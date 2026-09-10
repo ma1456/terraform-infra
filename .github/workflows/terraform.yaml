@@ -6,12 +6,12 @@ name: Terraform Infrastructure
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - 'envs/dev/**'
       - 'modules/**'
   pull_request:
-    branches: [main]
+    branches: [master]
     paths:
       - 'envs/dev/**'
       - 'modules/**'
