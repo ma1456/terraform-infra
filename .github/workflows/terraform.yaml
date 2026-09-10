@@ -80,10 +80,8 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          terraform plan \
-            -var="github_org=${{ vars.GH_ORG }}" \
-            -out=tfplan \
-            -no-color
+          terraform plan -out=tfplan -no-color
+
         continue-on-error: true
 
       - name: Check plan status
@@ -142,10 +140,7 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          terraform apply \
-            -auto-approve \
-            -no-color \
-            tfplan
+          terraform apply -auto-approve -no-color tfplan
 
       - name: Release state lock on failure
         if: failure() || cancelled()
@@ -185,10 +180,7 @@ jobs:
 
       - name: Terraform Destroy
         run: |
-          terraform destroy \
-            -var="github_org=${{ vars.GH_ORG }}" \
-            -auto-approve \
-            -no-color
+          terraform destroy -auto-approve -no-color
 
       - name: Release state lock on failure
         if: failure() || cancelled()
